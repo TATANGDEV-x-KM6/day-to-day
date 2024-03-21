@@ -22,5 +22,21 @@ async function main() {
 main();
 
 // third party module
+const Pool = require('pg').Pool;
+const pool = new Pool({
+    host: 'localhost',
+    database: 'youtube',
+    user: 'tatangdev',
+    password: null,
+    port: 5432,
+});
+
+async function main() {
+    let perPage = 5;
+    let page = 3;
+    let users = await pool.query('SELECT * FROM videos LIMIT $1 OFFSET $2', [perPage, (page - 1) * perPage]);
+    console.log(users.rows);
+}
+main();
 
 // local module
