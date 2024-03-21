@@ -40,3 +40,6 @@ async function main() {
 main();
 
 // local module
+const mathModule = require('./math-module');
+console.log('luas lingkaran dengan jari-jari 7 adalah:', mathModule.hitungLuasLingkaran(7));
+console.log('keliling lingkaran dengan jari-jari 7 adalah:', mathModule.hitungKelilingLingkaran(7));
