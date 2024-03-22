@@ -1,0 +1,7 @@
+POST http://localhost:3000/orders
+Content-Type: application/json
+
+{
+    "paid": true,
+    "user_id": 4
+}

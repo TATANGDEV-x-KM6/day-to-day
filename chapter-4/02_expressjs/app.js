@@ -1,9 +1,19 @@
 const express = require('express');
+const morgan = require('morgan');
 const app = express();
 const port = 3000;
 
-app.get('/', function (req, res) {
-    res.send('hello world');
+// application level middleware
+app.use(express.json()); // built-in middleware
+app.use(morgan('dev')); // third-party middleware
+
+app.get('/', function (req, res, next) {
+    try {
+        iniError; // test error handler
+        res.send('hello world');
+    } catch (error) {
+        next(error);
+    }
 });
 
 app.get('/products', function (req, res) {
@@ -11,7 +21,11 @@ app.get('/products', function (req, res) {
 });
 
 // query
-app.get('/orders', function (req, res) {
+const date = function (req, res, next) {
+    console.log(Date.now());
+    next();
+};
+app.get('/orders', date, function (req, res) { // route level middleware
     let paid = req.query.paid;
     let orders = [
         { id: 1, paid: true, user_id: 1 },
@@ -30,6 +44,21 @@ app.get('/orders', function (req, res) {
 app.get('/orders/:id', function (req, res) {
     let id = Number(req.params.id);
     res.json({ id: id, paid: true, user_id: id });
+});
+
+app.post('/orders', function (req, res) {
+    res.json(req.body);
+});
+
+// internal server error
+app.use((err, req, res, next) => {
+    console.log(err);
+    res.status(500).json({ err: err.message });
+});
+
+// 404 error handler
+app.use((req, res, next) => {
+    res.status(404).json({ err: `are you lost? ${req.method} ${req.url} is not registered!` });
 });
 
 app.listen(port, function () {
