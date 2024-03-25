@@ -16,8 +16,15 @@ app.get('/', function (req, res, next) {
     }
 });
 
-app.get('/products', function (req, res) {
-    res.json(["Apple", "Samsung", "One Plus"]);
+app.get('/products', async function (req, res, next) {
+    try {
+        // let products = await Pool.query('SELECT * FROM products');
+        // let products = await Pool.query('INSERT INTO users * FROM products');
+
+        res.json(products.rows);
+    } catch (err) {
+        next(err);
+    }
 });
 
 // query

@@ -1,0 +1,16 @@
+GET http://localhost:3000
+
+### get all cars
+GET http://localhost:3000/cars
+
+### get car details
+GET http://localhost:3000/cars/3
+
+### get car details
+POST http://localhost:3000/cars
+Content-Type: application/json
+
+{
+    "brand":"toyota",
+    "type":"avanza"
+}
