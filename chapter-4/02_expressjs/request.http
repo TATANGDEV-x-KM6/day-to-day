@@ -1,7 +1,35 @@
-POST http://localhost:3000/orders
-Content-Type: application/json
+### Listing all resources
+GET https://jsonplaceholder.typicode.com/posts
+
+### Getting a resource
+GET https://jsonplaceholder.typicode.com/posts/2
+
+### Creating a resource
+POST https://jsonplaceholder.typicode.com/posts
+Content-Type: 'application/json'
 
 {
-    "paid": true,
-    "user_id": 4
+    "title": "foo",
+    "body": "bar",
+    "userId": 1,
 }
+
+### Updating a resource
+PUT https://jsonplaceholder.typicode.com/posts/2
+Content-Type: 'application/json'
+
+{
+    "title": "foo",
+    "body": "bar",
+    "userId": 1,
+}
+
+### Deleting a resource
+DELETE https://jsonplaceholder.typicode.com/posts/1
+
+### https://jsonplaceholder.typicode.com/videos      | GET all (array)
+### https://jsonplaceholder.typicode.com/videos/2    | GET detail (object)
+### https://jsonplaceholder.typicode.com/videos      | POST (object)
+### https://jsonplaceholder.typicode.com/videos/2    | PUT (object)
+### https://jsonplaceholder.typicode.com/videos/1    | DELETE (object)
+
