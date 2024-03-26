@@ -1,0 +1,36 @@
+GET http://localhost:3000
+
+### get all cars
+GET http://localhost:3000/v1/cars?keyword=an&is_active=true
+
+### get car details
+GET http://localhost:3000/v1/cars/8
+
+### create an new car
+POST http://localhost:3000/v1/cars
+Content-Type: application/json
+
+{
+    "brand":"honda",
+    "type":"jazz"
+}
+
+### update car details
+PUT http://localhost:3000/v1/cars/10
+Content-Type: application/json
+
+{
+    "brand":"bmw",
+    "type":"e34"
+}
+
+### delete car
+DELETE  http://localhost:3000/v1/cars/2
+
+### delete multiple cars
+DELETE  http://localhost:3000/v1/cars-delete
+Content-Type: application/json
+
+{
+    "ids":[6,7]
+}
