@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int      @id @default(autoincrement())
+  email    String
+  password String
+  profile  Profile?
+  posts    Post[]
+
+  @@map("users")
+}
+
+model Profile {
+  id         Int     @id @default(autoincrement())
+  name       String
+  age        Int
+  avatar_url String?
+  user       User    @relation(fields: [user_id], references: [id])
+  user_id    Int     @unique
+
+  @@map("profiles")
+}
+
+model Post {
+  id         Int                 @id @default(autoincrement())
+  title      String
+  body       String
+  author     User?               @relation(fields: [author_id], references: [id])
+  author_id  Int?
+  categories CategoriesOnPosts[]
+
+  @@map("posts")
+}
+
+model Category {
+  id    Int                 @id @default(autoincrement())
+  name  String
+  posts CategoriesOnPosts[]
+
+  @@map("categories")
+}
+
+model CategoriesOnPosts {
+  id          Int       @id @default(autoincrement())
+  name        String
+  post        Post?     @relation(fields: [post_id], references: [id])
+  post_id     Int?
+  category    Category? @relation(fields: [category_id], references: [id])
+  category_id Int?
+  assigned_at DateTime  @default(now())
+  assigned_by String
+
+  @@map("categories_on_posts")
+}
