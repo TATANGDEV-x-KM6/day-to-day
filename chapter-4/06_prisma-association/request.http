@@ -1,12 +1,24 @@
-GET http://localhost:3000/v1/users
-
-###
-GET http://localhost:3000/v1/users/8
-
-###
-POST http://localhost:3000/v1/users
+POST http://localhost:3000/v1/auth/register
 Content-Type: application/json
 
 {
-    "name":"ica"
+    "name":"diyah",
+    "age":19,
+    "email":"diyah@mail.com",
+    "password":"diyah123"
+}
+
+### get all post
+GET http://localhost:3000/v1/posts
+
+
+### create post
+POST http://localhost:3000/v1/posts
+Content-Type: application/json
+
+{
+    "title":"prisma relation",
+    "body":"me manage relasi menggunakan prisma js",
+    "author_id":1,
+    "categories": ["education", "javascript"]
 }

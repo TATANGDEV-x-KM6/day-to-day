@@ -55,13 +55,10 @@ model Category {
 
 model CategoriesOnPosts {
   id          Int       @id @default(autoincrement())
-  name        String
   post        Post?     @relation(fields: [post_id], references: [id])
   post_id     Int?
   category    Category? @relation(fields: [category_id], references: [id])
   category_id Int?
-  assigned_at DateTime  @default(now())
-  assigned_by String
 
   @@map("categories_on_posts")
 }
