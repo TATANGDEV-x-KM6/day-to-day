@@ -1,0 +1,16 @@
+POST http://localhost:3000/v1/auth/register
+Content-Type: application/json
+
+{
+    "name":"tatang",
+    "email":"tatang@mail.com",
+    "password":"tatang123"
+}
+
+### get all post
+GET http://localhost:3000/v1/posts
+
+
+### create post
+POST http://localhost:3000/v1/users/4/follow
+user_id: 7
