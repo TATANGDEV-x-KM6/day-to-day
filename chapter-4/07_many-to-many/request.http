@@ -1,4 +1,4 @@
-POST http://localhost:3000/v1/auth/register
+POST http://localhost:3000/v1/users
 Content-Type: application/json
 
 {
@@ -7,8 +7,8 @@ Content-Type: application/json
     "password":"tatang123"
 }
 
-### get all post
-GET http://localhost:3000/v1/posts
+### get user detail
+GET http://localhost:3000/v1/users/4
 
 
 ### create post
