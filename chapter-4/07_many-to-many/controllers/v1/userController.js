@@ -97,5 +97,19 @@ module.exports = {
         } catch (err) {
             next(err);
         }
+    },
+
+    index: async (req, res, next) => {
+        try {
+            let users = await prisma.user.findMany();
+        
+            res.status(201).json({
+                status: true,
+                message: null,
+                data: users
+            });
+        } catch (err) {
+            next(err);
+        }
     }
 };

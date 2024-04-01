@@ -2,10 +2,13 @@ POST http://localhost:3000/v1/users
 Content-Type: application/json
 
 {
-    "name":"tatang",
-    "email":"tatang@mail.com",
-    "password":"tatang123"
+    "name":"agung",
+    "email":"agung@mail.com",
+    "password":"agung123"
 }
+
+### get all detail
+GET http://localhost:3000/v1/users
 
 ### get user detail
 GET http://localhost:3000/v1/users/4

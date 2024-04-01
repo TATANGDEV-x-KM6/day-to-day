@@ -1,0 +1,143 @@
+openapi: 3.0.1
+info:
+  title: Instagram API
+  description: api mirip-mirip instagram
+  version: 1.0.0
+  contact:
+    email: romadhonatatang@gmail.com
+servers:
+  - url: http://localhost:3000/api/v1
+  - url: https://instagram.com/api/v1
+paths:
+  /users:
+    post:
+      summary: register new user
+      description: mendaftarkan user baru kedalam sistem..
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: guntur
+                email:
+                  type: string
+                  example: guntur@mail.com
+                password:
+                  type: string
+                  example: guntur123
+      responses:
+        201:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 11
+                      name:
+                        type: string
+                        example: agung
+                      email:
+                        type: string
+                        example: agung@mail.com
+                      password:
+                        type: string
+                        example: agung123
+        400:
+          description: duplicated email
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: email already used!
+    get:
+      summary: get all users
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 11
+                        name:
+                          type: string
+                          example: agung
+                        email:
+                          type: string
+                          example: agung@mail.com
+                        password:
+                          type: string
+                          example: agung123
+  /users/{user_id}:
+    parameters:
+      - schema:
+          type: integer
+        name: user_id
+        in: path
+        required: true
+    get:
+      summary: get detail user
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: OK
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 11
+                      name:
+                        type: string
+                        example: agung
+                      email:
+                        type: string
+                        example: agung@mail.com
+                      password:
+                        type: string
+                        example: agung123
