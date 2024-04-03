@@ -1,0 +1,3 @@
+POST http://localhost:3000/v1/users
+Authorization: Bearer akljdalksdjbasldjkbsadlajkdba.asldjkasdljkasbndalskjadj.asidjasdiajb
+Content-Type: application/json
