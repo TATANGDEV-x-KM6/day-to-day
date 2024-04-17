@@ -12,8 +12,6 @@ describe('test POST /api/v1/users endpoint', () => {
                 .post('/api/v1/users')
                 .send({ name, email, password });
 
-            console.log('body', body);
-
             expect(statusCode).toBe(201);
             expect(body).toHaveProperty('status');
             expect(body).toHaveProperty('message');

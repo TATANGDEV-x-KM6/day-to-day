@@ -12,5 +12,15 @@ module.exports = {
         } catch (err) {
             throw err;
         }
+    },
+    getUserById: async (id) => {
+        try {
+            let result = await prisma.user.findUnique({ where: { id } });
+            if (!result) throw 'id tidak terdaftar';
+
+            return result;
+        } catch (error) {
+            throw (error);
+        }
     }
 };

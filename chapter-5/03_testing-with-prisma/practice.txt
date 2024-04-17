@@ -1,0 +1,15 @@
+Latihan: membuat endpoint login
+
+1. buatlah integration testing nya, ada 3 test case:
+    - test menggunakan email yang tidak terdaftar -> error
+    - test menggunakan email yang terdaftar, password tidak sesuai -> error
+    - test menggunkan email dan password yang sesuai -> sukses
+
+2. buatlah endpoint login:
+    - menerima email dan password, mengembalikan error message yang sesuai
+      jika email/password tidak sesuai
+    - format return ketika berhasil:
+        - id
+        - name
+        - email
+        - token

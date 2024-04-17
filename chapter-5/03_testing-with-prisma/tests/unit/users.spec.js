@@ -1,7 +1,8 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const { createUser, getUserById } = require('../../services/users');
 
-const { createUser } = require('../../services/users');
+let user = {};
 
 describe('test createUser()', () => {
     let name = 'usertest1';
@@ -16,6 +17,8 @@ describe('test createUser()', () => {
     test('test email belum terdaftar -> sukses', async () => {
         try {
             let result = await createUser(name, email, password);
+            user = result;
+
             expect(result).toHaveProperty('id');
             expect(result).toHaveProperty('name');
             expect(result).toHaveProperty('email');
@@ -33,6 +36,34 @@ describe('test createUser()', () => {
             await createUser(name, email, password);
         } catch (err) {
             expect(err).toBe('email sudah dipakai');
+        }
+    });
+});
+
+
+describe('test getUserById(:id)', () => {
+    test(' test cari user dengan id yang sudah terdaftar -> sukses', async () => {
+        try {
+            let result = await getUserById(user.id);
+
+            expect(result).toHaveProperty('id');
+            expect(result).toHaveProperty('name');
+            expect(result).toHaveProperty('email');
+            expect(result).toHaveProperty('password');
+            expect(result.id).toBe(user.id);
+            expect(result.name).toBe(user.name);
+            expect(result.email).toBe(user.email);
+            expect(result.password).toBe(user.password);
+        } catch (err) {
+            expect(err).toBe('error');
+        }
+    });
+
+    test('test cari user dengan invalid id -> error', async () => {
+        try {
+            await getUserById(user.id * -1);
+        } catch (err) {
+            expect(err).toBe('id tidak terdaftar');
         }
     });
 });
