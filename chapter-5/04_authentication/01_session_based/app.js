@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const flash = require('express-flash');
 const session = require('express-session');
