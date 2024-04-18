@@ -15,6 +15,10 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
+
+const passport = require('./libs/passport');
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(flash());
 app.set('view engine', 'ejs');
 

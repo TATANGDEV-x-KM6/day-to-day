@@ -21,11 +21,20 @@ module.exports = {
         }
     },
 
-    login: async (req, res, next) => {
+    verify: async (email, password, done) => {
         try {
+            let user = await prisma.user.findFirst({ where: { email } });
+            if (!user) {
+                return done(null, false, { message: 'invalid email or password' });
+            }
 
+            let isPasswordCorrect = await bcrypt.compare(password, user.password);
+            if (!isPasswordCorrect) {
+                return done(null, false, { message: 'invalid email or password' });
+            }
+            return done(null, user);
         } catch (error) {
-            next(error);
+            done(null, false, { message: error.message });
         }
     },
 

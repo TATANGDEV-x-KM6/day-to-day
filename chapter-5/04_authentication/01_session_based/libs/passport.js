@@ -1,6 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-
+const { verify } = require('../controllers/auth.controllers');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
@@ -13,6 +13,6 @@ passport.deserializeUser(async (id, done) => {
 passport.use(new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password'
-}));
+}, verify));
 
 module.exports = passport;
