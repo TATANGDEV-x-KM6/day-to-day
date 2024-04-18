@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Session Based - Register</title>
+</head>
+
+<body>
+    <h2>Register Form</h2>
+
+    <% if(messages.error){ %>
+        <p style="color: red;">
+            <%= messages.error %>
+        </p>
+        <% } %>
+
+            <form action="/api/v1/register" method="POST">
+                <div>
+                    <label for="name">Name :</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div>
+                    <label for="email">Email :</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="password">Password :</label>
+                    <input type="text" id="password" name="password" required>
+                </div>
+                <input type="submit" value="Register">
+            </form>
+</body>
+
+</html>
