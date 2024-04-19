@@ -1,0 +1,22 @@
+### register
+POST http://localhost:3000/api/v1/register
+Content-Type: application/json
+
+{
+    "name":"guntur",
+    "email":"guntur@mail.com",
+    "password":"password123"
+}
+
+### login
+POST http://localhost:3000/api/v1/login
+Content-Type: application/json
+
+{
+    "email":"guntur@mail.com",
+    "password":"password123"
+}
+
+### login
+GET http://localhost:3000/api/v1/whoami
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6Imd1bnR1ciIsImVtYWlsIjoiZ3VudHVyQG1haWwuY29tIiwiaWF0IjoxNzEzNTMyOTg1fQ.QQUvAswRO1jj5Iv0GTPS5AQAtyYrtKm46ahyYlE2Smc
