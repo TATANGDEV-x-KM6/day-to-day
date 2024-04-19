@@ -7,7 +7,7 @@ const { JWT_SECRET } = process.env;
 module.exports = {
     register: async (req, res, next) => {
         try {
-            let { name, email, password } = req.body;
+            let { name, email, password, role } = req.body;
             if (!name || !email || !password) {
                 return res.status(400).json({
                     status: false,
@@ -26,7 +26,13 @@ module.exports = {
             }
 
             let encryptedPassword = await bcrypt.hash(password, 10);
-            let user = await prisma.user.create({ data: { name, email, password: encryptedPassword } });
+            let userData = {
+                name,
+                email,
+                password: encryptedPassword
+            };
+            if (role) userData.role = role;
+            let user = await prisma.user.create({ data: userData });
             delete user.password;
 
             return res.status(201).json({
@@ -51,6 +57,7 @@ module.exports = {
             }
 
             let user = await prisma.user.findFirst({ where: { email } });
+            console.log(user);
             if (!user) {
                 return res.status(400).json({
                     status: false,

@@ -15,15 +15,34 @@ let restrict = (req, res, next) => {
     }
 
     let token = authorization.split(' ')[1];
-    let user = jwt.verify(token, JWT_SECRET);
-    delete user.iat;
-    req.user = user;
+    jwt.verify(token, JWT_SECRET, (err, user) => {
+        if (err) {
+            return res.status(401).json({
+                status: false,
+                message: err.message,
+                data: null
+            });
+        }
+        delete user.iat;
+        req.user = user;
+        next();
+    });
+};
 
+let isAdmin = (req, res, next) => {
+    if (req.user.role != 'ADMIN') {
+        return res.status(401).json({
+            status: false,
+            message: 'only admin can access!',
+            data: null
+        });
+    }
     next();
 };
 
 router.post('/register', register);
 router.post('/login', login);
 router.get('/whoami', restrict, whoami);
+router.post('/create-admin', restrict, isAdmin, (req, res, next) => { req.body.role = 'ADMIN'; next(); }, register);
 
 module.exports = router;

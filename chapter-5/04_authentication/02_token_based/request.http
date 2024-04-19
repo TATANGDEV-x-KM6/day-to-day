@@ -3,8 +3,8 @@ POST http://localhost:3000/api/v1/register
 Content-Type: application/json
 
 {
-    "name":"guntur",
-    "email":"guntur@mail.com",
+    "name":"tatang",
+    "email":"tatang@mail.com",
     "password":"password123"
 }
 
@@ -13,10 +13,22 @@ POST http://localhost:3000/api/v1/login
 Content-Type: application/json
 
 {
-    "email":"guntur@mail.com",
+    "email":"teddy@mail.com",
     "password":"password123"
 }
 
-### login
+### whoami
 GET http://localhost:3000/api/v1/whoami
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6Imd1bnR1ciIsImVtYWlsIjoiZ3VudHVyQG1haWwuY29tIiwiaWF0IjoxNzEzNTMyOTg1fQ.QQUvAswRO1jj5Iv0GTPS5AQAtyYrtKm46ahyYlE2Smc
+# Authorization: Bearer tokentoken
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InRlZGR5IiwiZW1haWwiOiJ0ZWRkeUBtYWlsLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTcxMzUzNzkwMn0.Q27_WRx0M3yEKOc1PgQHeiYP5BN5dB8SVYdnHHMGobI
+
+### create new admin
+POST http://localhost:3000/api/v1/create-admin
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InRlZGR5IiwiZW1haWwiOiJ0ZWRkeUBtYWlsLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTcxMzUzODAwOH0.gwsQcDbTFu0jgzK4pMQqjIprvgIgxDIGCeKzMXK1VL0
+
+{
+    "name":"galuh",
+    "email":"galuh@mail.com",
+    "password":"password123"
+}

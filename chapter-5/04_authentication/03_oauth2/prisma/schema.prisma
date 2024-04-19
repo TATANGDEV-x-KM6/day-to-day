@@ -14,13 +14,6 @@ model User {
   id       Int     @id @default(autoincrement())
   name     String?
   email    String  @unique
-  password String
-  role     Role    @default(USER)
-
-  @@map("users")
-}
-
-enum Role {
-  USER
-  ADMIN
+  password String?
+  googleid  String?
 }
