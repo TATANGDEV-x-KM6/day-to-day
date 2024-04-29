@@ -1,0 +1,40 @@
+Implementasi Update Profile:
+1. Adjust model user
+    column:
+        - id
+        - first_name -> string -> required
+        - last_name-> string -> required
+        - email-> string -> required
+        - password-> string -> required
+        - address-> string
+        - occupation-> string
+        - avatar_url-> string
+
+2. Register endpoint
+    - first_name
+    - last_name
+    - email
+    - password
+
+3. Register OAuth
+    - first_name
+    - last_name
+    - email
+
+4. Endpoint update profile (1)
+    - path: PUT /v1/api/users/:id/profile (application/json)
+        - first_name
+        - last_name
+        - email
+        - address
+        - occupation
+
+5. Endpoint update avatar (2)
+    - path: PUT /v1/api/users/:id/avatar (multipart/form-data)
+        - file
+    - logic:
+        - pasang multer
+        - convert file -> base64
+        - upload base64 -> imagekit
+        - update users set avatar_url=url_dari_imagekit where id = req.params.id
+

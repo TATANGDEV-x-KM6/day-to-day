@@ -27,7 +27,7 @@ const generateFileFilter = (mimetypes) => {
 };
 
 module.exports = {
-    image: multer({
+    imageStorage: multer({
         storage: generateStorage('./public/images'),
         fileFilter: generateFileFilter([
             'image/png',
@@ -39,7 +39,7 @@ module.exports = {
         }
     }),
 
-    video: multer({
+    videoStorage: multer({
         storage: generateStorage('./public/videos'),
         fileFilter: generateFileFilter([
             'video/mp4',
@@ -51,9 +51,45 @@ module.exports = {
         }
     }),
 
-    document: multer({
+    documentStorage: multer({
         storage: generateStorage('./public/documents'),
         fileFilter: generateFileFilter([
+            'application/pdf',
+            'application/vnd.ms-excel',
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'application/msword',
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        ]),
+        onError: (err, next) => {
+            next(err);
+        }
+    }),
+
+    image: multer({
+        fileFilter: generateFileFilter([
+            'image/png',
+            'image/jpg',
+            'image/jpeg'
+        ]),
+        onError: (err, next) => {
+            next(err);
+        }
+    }),
+
+    video: multer({
+        fileFilter: generateFileFilter([
+            'video/mp4',
+            'video/mpeg',
+            'video/webm'
+        ]),
+        onError: (err, next) => {
+            next(err);
+        }
+    }),
+
+    document: multer({
+        fileFilter: generateFileFilter([
+            'text/plain',
             'application/pdf',
             'application/vnd.ms-excel',
             'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
