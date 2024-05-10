@@ -1,0 +1,4 @@
+Ada 2 hal yang bisa kita improve dari fitur yang sudah kita punya:
+1. Saat ini, topic dalam html masih ditulis secara hardcode. Ubah topic secara dinamis sesuai id user.
+2. Styling notif dari db.json sebagai notif yang sudah dibaca (warna lebih terang)
+3. Bonus: tambahkan count unread notif

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Notification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header,
+        nav,
+        main,
+        footer {
+            margin: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>User ID: <%=userID%>
+        </h1>
+    </header>
+
+    <main>
+        <p>Unread notif: 1</p>
+        <h2>Notification list:</h2>
+        <ul id="notification-list">
+            <% notifications.forEach(item=>{ %>
+                <li>
+                    <b>
+                        <%=item.title%>
+                    </b>
+                    <p>
+                        <%=item.body%>
+                    </p>
+                </li>
+                <% }) %>
+        </ul>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 tatangdev. All rights reserved.</p>
+    </footer>
+
+    <script src=" /socket.io/socket.io.js">
+    </script>
+    <script>
+        let socket = io();
+        let notifications = document.getElementById('notification-list');
+
+        socket.on('user-1', notif => {
+            console.log(notif);
+            let item = document.createElement('li');
+            item.innerHTML = `
+            <b>${notif.title}</b>
+            <p>${notif.body}</p>
+            `;
+            notifications.append(item);
+        })
+    </script>
+
+</body>
+
+</html>

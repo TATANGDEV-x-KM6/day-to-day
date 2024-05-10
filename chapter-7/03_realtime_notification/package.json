@@ -1,0 +1,14 @@
+{
+  "name": "02_websocket",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5"
+  },
+  "scripts": {
+    "dev": "nodemon app.js"
+  }
+}
