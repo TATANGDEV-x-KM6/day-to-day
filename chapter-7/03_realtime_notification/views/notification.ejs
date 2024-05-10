@@ -30,20 +30,22 @@
 
 <body>
     <header>
-        <h1>User ID: <%=userID%>
+        <h1>User ID: <span id="userId">
+                <%=userID%>
+            </span>
         </h1>
     </header>
 
     <main>
-        <p>Unread notif: 1</p>
+        <p>Unread notif: <span id="unreadCnt">0</span></p>
         <h2>Notification list:</h2>
         <ul id="notification-list">
             <% notifications.forEach(item=>{ %>
                 <li>
-                    <b>
+                    <b style="color: gray;">
                         <%=item.title%>
                     </b>
-                    <p>
+                    <p style="color: gray;">
                         <%=item.body%>
                     </p>
                 </li>
@@ -60,8 +62,12 @@
     <script>
         let socket = io();
         let notifications = document.getElementById('notification-list');
+        let userId = document.getElementById('userId');
+        console.log();
+        let unreadCntElement = document.getElementById('unreadCnt');
 
-        socket.on('user-1', notif => {
+        let unreadCnt = 0;
+        socket.on(`user-${Number(userId.textContent)}`, notif => {
             console.log(notif);
             let item = document.createElement('li');
             item.innerHTML = `
@@ -69,6 +75,10 @@
             <p>${notif.body}</p>
             `;
             notifications.append(item);
+
+            // cnt notif
+            unreadCnt++;
+            unreadCntElement.textContent = unreadCnt;
         })
     </script>
 

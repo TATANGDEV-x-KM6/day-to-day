@@ -1,9 +1,8 @@
 POST http://localhost:3000/notification
 Content-Type: application/json
 
-
 {
-    "user_id":1,
-    "title":"Test Realtime Notif 2",
-    "body":"This is your new notification 2"
+    "user_id":3,
+    "title":"Test Realtime Notif 3",
+    "body":"This is your new notification 3"
 }
