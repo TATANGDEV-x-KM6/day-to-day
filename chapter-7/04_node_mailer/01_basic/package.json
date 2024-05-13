@@ -1,0 +1,10 @@
+{
+  "name": "01_basic",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "googleapis": "^137.1.0",
+    "nodemailer": "^6.9.13"
+  }
+}
