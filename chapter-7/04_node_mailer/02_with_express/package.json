@@ -1,0 +1,17 @@
+{
+  "name": "02_with_express",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "googleapis": "^137.1.0",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.9.13"
+  },
+  "scripts": {
+    "dev": "nodemon app.js"
+  }
+}
