@@ -1,0 +1,28 @@
+### register
+POST http://localhost:3000/api/v1/register
+Content-Type: application/json
+
+{
+    "name":"tatang",
+    "email":"tatang@mail.com",
+    "password":"password123"
+}
+
+### login
+POST http://localhost:3000/api/v1/login
+Content-Type: application/json
+
+{
+    "email":"tatang@mail.com",
+    "password":"password123"
+}
+
+### whoami
+GET http://localhost:3000/api/v1/whoami
+# Authorization: Bearer tokentoken
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InRhdGFuZyIsImVtYWlsIjoidGF0YW5nQG1haWwuY29tIiwiaXNfdmVyaWZpZWQiOmZhbHNlLCJpYXQiOjE3MTU3NzkwNjB9.oQGqNoQCx4mGO4DZceXZciP-Trka0OFqSC3iblVTlJA
+
+### request verify email
+GET http://localhost:3000/api/v1/request-verify
+# Authorization: Bearer tokentoken
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InRhdGFuZyIsImVtYWlsIjoidGF0YW5nQG1haWwuY29tIiwiaXNfdmVyaWZpZWQiOmZhbHNlLCJpYXQiOjE3MTU3NzkwNjB9.oQGqNoQCx4mGO4DZceXZciP-Trka0OFqSC3iblVTlJA

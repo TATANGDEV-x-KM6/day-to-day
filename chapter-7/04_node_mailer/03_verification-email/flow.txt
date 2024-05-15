@@ -1,0 +1,4 @@
+1. /register -> membuat user baru -> is_verified=false
+2. /register -> mengirimkan email -> berisi link verifikasi
+   /request-verify -> mengirimkan ulang email verifikasi
+3. link verifikasi -> GET /verify?token= -> update is_verified=true
