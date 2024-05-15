@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken');
 const router = express.Router();
 const { JWT_SECRET } = process.env;
 const auth = require('../controllers/auth.controllers');
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
 
 let restrict = (req, res, next) => {
     let { authorization } = req.headers;
@@ -15,7 +17,7 @@ let restrict = (req, res, next) => {
     }
 
     let token = authorization.split(' ')[1];
-    jwt.verify(token, JWT_SECRET, (err, user) => {
+    jwt.verify(token, JWT_SECRET, async (err, data) => {
         if (err) {
             return res.status(401).json({
                 status: false,
@@ -23,7 +25,11 @@ let restrict = (req, res, next) => {
                 data: null
             });
         }
-        delete user.iat;
+
+        let user = await prisma.user.findFirst({
+            where: { id: data.id }
+        });
+        delete user.password;
         req.user = user;
         next();
     });

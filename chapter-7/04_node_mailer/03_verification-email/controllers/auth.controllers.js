@@ -77,7 +77,7 @@ module.exports = {
             }
 
             delete user.password;
-            let token = jwt.sign(user, JWT_SECRET);
+            let token = jwt.sign({ id: user.id }, JWT_SECRET);
 
             res.json({
                 status: true,
@@ -126,11 +126,10 @@ module.exports = {
     requestVerifyEmail: async (req, res, next) => {
         try {
             let token = jwt.sign({ id: req.user.id }, JWT_SECRET);
-            let url = `http://localhost:3000/api/v1/verify?token=${token}`;
+            let url = `${req.protocol}://${req.get('host')}/api/v1/verify?token=${token}`;
             let html = await getHTML('verification-code.ejs', { name: 'Joko', verification_url: url });
 
             await sendMail(req.user.email, 'Verification Email', html);
-
             return res.json({
                 status: true,
                 message: 'success',
