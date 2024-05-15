@@ -3,7 +3,7 @@ const prisma = new PrismaClient();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const { JWT_SECRET } = process.env;
-const { getHTML } = require('../libs/nodemailer');
+const { getHTML, sendMail } = require('../libs/nodemailer');
 
 module.exports = {
     register: async (req, res, next) => {
@@ -128,21 +128,14 @@ module.exports = {
             let token = jwt.sign({ id: req.user.id }, JWT_SECRET);
             let url = `http://localhost:3000/api/v1/verify?token=${token}`;
             let html = await getHTML('verification-code.ejs', { name: 'Joko', verification_url: url });
-            res.send(html);
 
+            await sendMail(req.user.email, 'Verification Email', html);
 
-
-
-
-            // generate token untuk url verifikasi
-
-            // generate url untuk verifikasi
-            // http://localhost:3000/verify?token=
-
-            // getHTML verifikasi email
-
-
-            // kirimkan email verifikasi
+            return res.json({
+                status: true,
+                message: 'success',
+                data: null
+            });
         } catch (error) {
             next(error);
         }

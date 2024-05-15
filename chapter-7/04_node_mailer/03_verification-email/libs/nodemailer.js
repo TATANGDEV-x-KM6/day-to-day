@@ -31,7 +31,7 @@ module.exports = {
 
             transport.sendMail({ to, subject, html });
         } catch (error) {
-            console.log(err);
+            console.log(error);
         }
     },
 
